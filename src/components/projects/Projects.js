@@ -1,13 +1,19 @@
-import React from 'react'
+import Bar from '../layout/Bar'
 import Sidebar from '../layout/Sidebar'
+import TaskForm from '../tasks/TaskForm'
+import TaskList from '../tasks/TaskList'
 
 const Projects = () => {
     return (
         <div className="contenedor-app">
             <Sidebar />
             <div className="seccion-principal">
+                <Bar />
                 <main>
-                    <div className="contenedor-tareas"></div>
+                    <TaskForm />
+                    <div className="contenedor-tareas">
+                        <TaskList />
+                    </div>
                 </main>
             </div>
         </div>
