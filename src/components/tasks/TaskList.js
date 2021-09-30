@@ -18,6 +18,7 @@ const TaskList = () => {
                     ? <li>No tasks yet</li>
                     : tasks.map((task) => (
                         <Task
+                            key={task.name}
                             task={task}
                         />
                     ))
