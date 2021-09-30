@@ -1,4 +1,7 @@
-import { PROJECT_FORM, GET_PROJECTS } from "../../types"
+import { 
+    PROJECT_FORM,
+    GET_PROJECTS
+} from "../../types"
 
 export default (state, action) => {
     switch (action.type) {
