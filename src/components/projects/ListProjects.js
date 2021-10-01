@@ -1,13 +1,17 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import Project from './Project'
 import ProjectContext from "../../context/projects/projectContext"
 
 const ListProjects = () => {
 
     const projectsContext = useContext(ProjectContext)
-    const { projects } = projectsContext
+    const { projects, getProjects } = projectsContext
 
-    if (projects.length === 0) return null
+    useEffect(() => {
+        getProjects()
+    }, [])
+
+    if (projects.length === 0) return <p>No hay proyectos, por favor crea uno</p>
 
     return (
         <ul className='listado-proyectos'>
