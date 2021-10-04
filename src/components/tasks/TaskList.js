@@ -7,12 +7,7 @@ const TaskList = () => {
     const projectsContext = useContext(ProjectContext)
     const { selectedProject, deleteProject } = projectsContext
 
-    const tasks = [
-        { name: 'Select platform', taskState: true },
-        { name: 'Select platform 2', taskState: false },
-        { name: 'Select platform 3', taskState: false },
-        { name: 'Select platform 4', taskState: true }
-    ]
+    const tasks = []
 
     if (!selectedProject) return <h2>Selecciona un proyecto</h2>
 

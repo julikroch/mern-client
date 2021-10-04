@@ -4,17 +4,20 @@ import NewAccount from './components/auth/NewAccount'
 import ProjectsContainer from './components/projects/ProjectsContainer'
 ////////////////////////////////////////////////////
 import ProjectState from './context/projects/projectState'
+import TaskState from './context/tasks/taskState'
 
 function App() {
   return (
     <ProjectState>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/new-account' component={NewAccount} />
-          <Route exact path='/projects' component={ProjectsContainer} />
-        </Switch>
-      </Router>
+      <TaskState>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route exact path='/new-account' component={NewAccount} />
+            <Route exact path='/projects' component={ProjectsContainer} />
+          </Switch>
+        </Router>
+      </TaskState>
     </ProjectState>
   );
 }
