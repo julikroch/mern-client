@@ -8,7 +8,6 @@ const Project = ({ project }) => {
     const { selectProjectFn } = projectsContext
 
     const tasksContext = useContext(TaskContext)
-
     const { getTasks } = tasksContext
 
     const selectProject = id => {
