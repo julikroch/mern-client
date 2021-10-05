@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import ProjectContext from "../../context/projects/projectContext"
 import TaskContext from '../../context/tasks/taskContext'
 
@@ -8,15 +8,13 @@ const TaskForm = () => {
     const { selectedProject } = projectsContext
 
     const tasksContext = useContext(TaskContext)
-    const { taskError, addTask, validateTask, getTasks } = tasksContext
+    const { selectedTask, taskError, addTask, validateTask, getTasks, updateTask } = tasksContext
 
     const [task, setTask] = useState({
         name: ''
     })
 
     const { name } = task
-
-    if (!selectedProject) return null
 
     const handleChange = e => {
         setTask({
@@ -33,14 +31,31 @@ const TaskForm = () => {
             return
         }
 
-        task.projectId = selectedProject[0].id
-        task.state = false
-        addTask(task)
+        if (selectedTask === null) {
+            task.projectId = selectedProject[0].id
+            task.state = false
+            addTask(task)
+        } else {
+            updateTask(task)
+        }
 
         getTasks(selectedProject[0].id)
 
         setTask({ name: '' })
     }
+
+    useEffect(() => {
+        if (selectedTask !== null) {
+            setTask(selectedTask)
+        }
+        else {
+            setTask({
+                name: ''
+            })
+        }
+    }, [selectedTask])
+
+    if (!selectedProject) return null
 
     return (
         <div className="formulario">
@@ -61,7 +76,7 @@ const TaskForm = () => {
                     <input
                         type="submit"
                         className='btn btn-primario btn-submit btn-block'
-                        value='Add task'
+                        value={selectedTask ? 'Edit task' : 'Add task'}
                     />
                 </div>
             </form>

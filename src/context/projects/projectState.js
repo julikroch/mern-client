@@ -1,7 +1,7 @@
-import { useReducer } from "react";
-import { v4 as uuid } from "uuid";
-import ProjectContext from "./projectContext";
-import ProjectReducer from "./projectReducer";
+import { useReducer } from 'react';
+import { v4 as uuid } from 'uuid';
+import ProjectContext from './projectContext';
+import ProjectReducer from './projectReducer';
 
 
 import {
@@ -11,7 +11,7 @@ import {
     VALIDATE_FORM,
     SELECTED_PROJECT,
     DELETE_PROJECT
-} from "../../types";
+} from '../../types';
 
 const ProjectState = props => {
 

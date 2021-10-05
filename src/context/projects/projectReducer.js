@@ -5,7 +5,7 @@ import {
     VALIDATE_FORM,
     SELECTED_PROJECT,
     DELETE_PROJECT
-} from "../../types"
+} from '../../types'
 
 export default (state, action) => {
     switch (action.type) {

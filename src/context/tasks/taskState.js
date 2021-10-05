@@ -1,13 +1,16 @@
-import TaskContext from "./taskContext";
-import TaskReducer from "./taskReducer";
-import { useReducer } from "react";
+import TaskContext from './taskContext';
+import TaskReducer from './taskReducer';
+import { useReducer } from 'react';
 
 import {
     PROJECT_TASKS,
     ADD_TASK,
     VALIDATE_TASK,
-    DELETE_TASK
-} from "../../types";
+    DELETE_TASK,
+    TASK_STATE,
+    ACTUAL_TASK, 
+    UPDATE_TASK
+} from '../../types';
 
 const TaskState = props => {
     const initialState = {
@@ -21,7 +24,8 @@ const TaskState = props => {
             { id: 7, name: 'Select platform 3', taskState: false, projectId: 1 },
         ],
         projectTasks: null,
-        taskError: false
+        taskError: false,
+        selectedTask: null
     }
 
     const [state, dispatch] = useReducer(TaskReducer, initialState)
@@ -53,16 +57,41 @@ const TaskState = props => {
         })
     }
 
+    const taskStateFn = task => {
+        dispatch({
+            type: TASK_STATE,
+            payload: task
+        })
+    }
+
+    const saveActualTask = task => {
+        dispatch({
+            type: ACTUAL_TASK,
+            payload: task
+        })
+    }
+
+    const updateTask = task => {
+        dispatch({
+            type: UPDATE_TASK,
+            payload: task
+        })
+    }
+
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 projectTasks: state.projectTasks,
                 taskError: state.taskError,
+                selectedTask: state.selectedTask,
                 getTasks,
                 addTask,
                 validateTask,
-                deleteTask
+                deleteTask,
+                taskStateFn,
+                saveActualTask,
+                updateTask
             }}
         >
             {props.children}

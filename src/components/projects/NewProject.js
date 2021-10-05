@@ -1,5 +1,5 @@
-import { Fragment, useContext, useState } from "react"
-import ProjectContext from "../../context/projects/projectContext"
+import { Fragment, useContext, useState } from 'react'
+import ProjectContext from '../../context/projects/projectContext'
 
 const NewProject = () => {
 
@@ -49,7 +49,7 @@ const NewProject = () => {
                         onSubmit={submitProject}
                     >
                         <input
-                            type="text"
+                            type='text'
                             className='input-text'
                             placeholder='Project name'
                             name='name'
@@ -58,7 +58,7 @@ const NewProject = () => {
                         />
 
                         <input
-                            type="submit"
+                            type='submit'
                             className='btn btn-primario btn-block'
                             value='Add project'
                         />

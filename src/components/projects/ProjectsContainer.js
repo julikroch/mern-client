@@ -5,13 +5,13 @@ import TaskList from '../tasks/TaskList'
 
 const Projects = () => {
     return (
-        <div className="contenedor-app">
+        <div className='contenedor-app'>
             <Sidebar />
-            <div className="seccion-principal">
+            <div className='seccion-principal'>
                 <Bar />
                 <main>
                     <TaskForm />
-                    <div className="contenedor-tareas">
+                    <div className='contenedor-tareas'>
                         <TaskList />
                     </div>
                 </main>

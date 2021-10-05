@@ -1,5 +1,5 @@
-import NewProject from "../projects/NewProject"
-import ListProjects from "../projects/ListProjects"
+import NewProject from '../projects/NewProject'
+import ListProjects from '../projects/ListProjects'
 
 const Sidebar = () => {
     return (
@@ -7,7 +7,7 @@ const Sidebar = () => {
             <h1>MERN <span>Tasks</span></h1>
 
             <NewProject />
-            <div className="proyectos">
+            <div className='proyectos'>
                 <h2>Your projects</h2>
                 <ListProjects />
             </div>
