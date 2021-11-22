@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom'
+import AlertContext from '../../context/alerts/alertContext';
 
 const NewAccount = () => {
+
+    const alertContext = useContext(AlertContext)
+    const { alert, showAlert } = alertContext
 
     //Login state
     const [user, saveUser] = useState({
@@ -13,6 +17,8 @@ const NewAccount = () => {
 
     const { name, email, password, confirm } = user
 
+    const fieldArray = [name, email, password, confirm]
+
     const handleChange = e => {
         saveUser({
             ...user,
@@ -22,11 +28,25 @@ const NewAccount = () => {
 
     const onSubmit = e => {
         e.preventDefault()
+        if (fieldArray.includes('')) {
+            showAlert('Todos los campos son obligatorios', 'alerta-error')
+            return
+        }
 
+        if (password.length < 6) {
+            showAlert('La contraseña debe ser de al menos 6 caracteres', 'alerta-error')
+            return
+        }
+
+        if (password !== confirm) {
+            showAlert('Las contraseñas no coinciden', 'alerta-error')
+            return
+        }
     }
 
     return (
         <div className='form-usuario'>
+            {alert ? <div className={`alerta ${alert.category}`}>{alert.msg}</div> : null}
             <div className='contenedor-form sombra-dark'>
                 <h1>Create account</h1>
                 <form
@@ -44,7 +64,7 @@ const NewAccount = () => {
                         />
                     </div>
                     <div className='campo-form'>
-                        <label htmlFor='email'>email</label>
+                        <label htmlFor='email'>Email</label>
                         <input
                             type='email'
                             id='email'
