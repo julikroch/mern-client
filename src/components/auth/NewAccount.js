@@ -1,11 +1,22 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
-const NewAccount = () => {
+const NewAccount = (props) => {
 
     const alertContext = useContext(AlertContext)
     const { alert, showAlert } = alertContext
+
+    const authContext = useContext(AuthContext)
+    const { message, authenticated, userRegister } = authContext
+
+    useEffect(() => {
+        if (authenticated) props.history.push('/projects')
+
+        if (message) showAlert(message.msg, message.category)
+
+    }, [message, authenticated, props.history])
 
     //Login state
     const [user, saveUser] = useState({
@@ -42,6 +53,12 @@ const NewAccount = () => {
             showAlert('Las contraseñas no coinciden', 'alerta-error')
             return
         }
+
+        userRegister({
+            name,
+            email,
+            password
+        })
     }
 
     return (
